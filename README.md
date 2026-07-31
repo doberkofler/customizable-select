@@ -4,6 +4,8 @@ An accessible, dependency-free TypeScript enhancement for native `<select>` and 
 
 `customizable-select` is a modern migration path from Select2, not a jQuery-compatible clone. The first release focuses on a reliable local-data core; remote data, pagination, tagging, and grouped options are deliberately reserved for future APIs.
 
+![Customizable Select demo](./docs/images/customizable-select-demo.png)
+
 ## Features
 
 - Enhances native inputs and selects without replacing their form semantics.
