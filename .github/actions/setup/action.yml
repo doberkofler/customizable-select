@@ -3,8 +3,6 @@ runs:
   using: composite
   steps:
     - uses: pnpm/action-setup@v6
-      with:
-        version: 11
 
     - uses: actions/setup-node@v5
       with:

@@ -21,7 +21,6 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v6.0.9
         with:
-          version: 9
           run_install: false
 
       - name: Setup Node.js
@@ -39,17 +38,5 @@ jobs:
       - name: Install Playwright Browsers & Deps
         run: npx playwright install --with-deps chromium
 
-      - name: Lint
-        run: pnpm run lint
-
-      - name: Build
-        run: pnpm run build
-
-      - name: Unit test
-        run: pnpm run test
-
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v2
-
-      - name: Integration test
-        run: pnpm run integration-test
+      - name: Validate
+        run: pnpm run ci
