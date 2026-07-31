@@ -1,5 +1,5 @@
-# Changelog
+# 0.1.0 (2026-07-31)
 
-All notable changes to `customizable-select` will be documented in this file.
+### Features
 
-The project follows [Semantic Versioning](https://semver.org/) and uses Conventional Commits for generated release notes.
+* initial customizable select implementation ([f6dde88](https://github.com/doberkofler/customizable-select/commit/f6dde88ba40c724a8ce9b1b766d61f2fdb24b7b8))
