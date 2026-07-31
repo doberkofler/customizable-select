@@ -1,0 +1,184 @@
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--demo-bg: #eef3f8;
+	--demo-card: rgb(255, 255, 255, 0.86);
+	--demo-border: rgb(126, 144, 168, 0.24);
+	--demo-text: #142033;
+	--demo-muted: #65758b;
+	--demo-shadow: 0 24px 80px rgb(25, 42, 70, 0.18);
+}
+
+:root[data-theme="dark"] {
+	--demo-bg: #101722;
+	--demo-card: rgb(22, 31, 45, 0.88);
+	--demo-border: rgb(130, 152, 184, 0.24);
+	--demo-text: #edf4ff;
+	--demo-muted: #a7b4c7;
+	--demo-shadow: 0 24px 80px rgb(0, 0, 0, 0.42);
+	--customizable-select-background: #151f2d;
+	--customizable-select-background-active: #1f334b;
+	--customizable-select-border: #40516a;
+	--customizable-select-text: #edf4ff;
+	--customizable-select-text-muted: #98a8bd;
+	--customizable-select-tag-background: #254767;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 32px;
+	font-family: Inter, "Segoe UI", system-ui, sans-serif;
+	color: var(--demo-text);
+	background:
+		radial-gradient(circle at 15% 10%, rgb(42, 118, 194, 0.28), transparent 34%), radial-gradient(circle at 85% 18%, rgb(55, 190, 170, 0.22), transparent 30%),
+		linear-gradient(135deg, var(--demo-bg), #f9fbfd);
+}
+
+:root[data-theme="dark"] body {
+	background:
+		radial-gradient(circle at 15% 10%, rgb(42, 118, 194, 0.24), transparent 34%), radial-gradient(circle at 85% 18%, rgb(55, 190, 170, 0.16), transparent 30%),
+		linear-gradient(135deg, var(--demo-bg), #0a1018);
+}
+
+.demo-shell {
+	display: grid;
+	gap: 24px;
+	width: min(1100px, 100%);
+	margin: 0 auto;
+}
+
+.demo-hero {
+	padding: clamp(28px, 7vw, 72px);
+	border: 1px solid var(--demo-border);
+	border-radius: 28px;
+	background: var(--demo-card);
+	box-shadow: var(--demo-shadow);
+	backdrop-filter: blur(18px);
+}
+
+.demo-eyebrow {
+	margin: 0 0 12px;
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #0876d8;
+}
+
+.demo-hero h1 {
+	max-width: 780px;
+	margin: 0;
+	font-size: clamp(36px, 7vw, 72px);
+	line-height: 0.95;
+	letter-spacing: -0.06em;
+}
+
+.demo-copy {
+	max-width: 680px;
+	margin: 20px 0 42px;
+	font-size: clamp(16px, 2vw, 20px);
+	line-height: 1.6;
+	color: var(--demo-muted);
+}
+
+.demo-card {
+	display: flex;
+	justify-content: center;
+	padding: clamp(16px, 4vw, 34px);
+	border: 1px solid var(--demo-border);
+	border-radius: 24px;
+	background: rgb(255, 255, 255, 0.56);
+}
+
+.demo-field {
+	width: min(620px, 100%);
+}
+
+.demo-label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 700;
+}
+
+:root[data-theme="dark"] .demo-card {
+	background: rgb(8, 13, 20, 0.3);
+}
+
+.demo-panel {
+	display: grid;
+	gap: 12px;
+	padding: 18px;
+	border: 1px solid var(--demo-border);
+	border-radius: 18px;
+	background: var(--demo-card);
+}
+
+.demo-controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.demo-btn {
+	padding: 9px 14px;
+	border: 1px solid var(--demo-border);
+	border-radius: 999px;
+	font: inherit;
+	font-weight: 700;
+	color: var(--demo-text);
+	background: rgb(255, 255, 255, 0.72);
+	cursor: pointer;
+}
+
+.demo-btn:hover {
+	border-color: #0876d8;
+}
+
+:root[data-theme="dark"] .demo-btn {
+	background: rgb(255, 255, 255, 0.08);
+}
+
+.demo-log-label {
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--demo-muted);
+}
+
+.demo-event-log {
+	width: 100%;
+	min-height: 128px;
+	resize: vertical;
+	padding: 12px;
+	border: 1px solid var(--demo-border);
+	border-radius: 12px;
+	font:
+		12px/1.5 ui-monospace,
+		SFMono-Regular,
+		Menlo,
+		Monaco,
+		Consolas,
+		"Liberation Mono",
+		"Courier New",
+		monospace;
+	color: var(--demo-text);
+	background: rgb(255, 255, 255, 0.62);
+}
+
+:root[data-theme="dark"] .demo-event-log {
+	background: rgb(0, 0, 0, 0.22);
+}
+
+@media (width <= 760px) {
+	body {
+		padding: 14px;
+	}
+
+	.demo-hero {
+		border-radius: 20px;
+	}
+}

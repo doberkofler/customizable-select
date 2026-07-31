@@ -1,0 +1,112 @@
+{
+	"name": "customizable-select",
+	"version": "0.1.0",
+	"private": false,
+	"description": "An accessible, dependency-free TypeScript replacement for enhanced select controls",
+	"keywords": [
+		"combobox",
+		"component",
+		"multi-select",
+		"select2",
+		"typescript",
+		"vanilla"
+	],
+	"homepage": "https://doberkofler.github.io/customizable-select/",
+	"bugs": {
+		"url": "https://github.com/doberkofler/customizable-select/issues"
+	},
+	"license": "MIT",
+	"author": "doberkofler",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/doberkofler/customizable-select.git"
+	},
+	"files": [
+		"dist",
+		"CHANGELOG.md"
+	],
+	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.mts",
+			"import": "./dist/index.mjs",
+			"default": "./dist/index.mjs"
+		},
+		"./react": {
+			"types": "./dist/react.d.mts",
+			"import": "./dist/react.mjs",
+			"default": "./dist/react.mjs"
+		},
+		"./styles.css": "./dist/styles/index.css"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"lint": "oxlint",
+		"format": "oxfmt --write && stylelint --fix 'src/{demo,styles}/**/*.css'",
+		"format:check": "oxfmt --check",
+		"ci": "pnpm run typecheck && pnpm run lint && pnpm run lint:css && pnpm run format:check && pnpm run build:lib && pnpm run build && pnpm run docs:api && pnpm run test && pnpm run integration-test",
+		"test": "vitest run",
+		"release": "release-it",
+		"create-changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+		"prepare": "husky",
+		"dev": "vite",
+		"build": "vite build",
+		"build:lib": "tsdown",
+		"build:demo": "vite build",
+		"docs:api": "typedoc",
+		"preview": "vite preview",
+		"start": "vite preview --port 4173 --strictPort",
+		"test:ui": "vitest",
+		"integration-test": "playwright test",
+		"lint:css": "stylelint 'src/{demo,styles}/**/*.css'",
+		"lint:css:fix": "stylelint --fix 'src/{demo,styles}/**/*.css'",
+		"screenshot": "node scripts/screenshot.mjs"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "21.2.1",
+		"@commitlint/config-conventional": "21.2.0",
+		"@playwright/test": "1.62.0",
+		"@types/node": "26.1.2",
+		"@types/react": "19.2.17",
+		"@types/react-dom": "19.2.3",
+		"@vitest/browser": "4.1.10",
+		"@vitest/browser-playwright": "4.1.10",
+		"@vitest/coverage-v8": "4.1.10",
+		"conventional-changelog": "8.1.0",
+		"conventional-changelog-angular": "9.2.1",
+		"eslint-plugin-regexp": "3.1.1",
+		"husky": "9.1.7",
+		"oxfmt": "0.61.0",
+		"oxlint": "1.76.0",
+		"oxlint-tsgolint": "7.0.2001",
+		"playwright": "1.62.0",
+		"react": "19.2.8",
+		"react-dom": "19.2.8",
+		"release-it": "21.0.0",
+		"stylelint": "17.14.1",
+		"stylelint-config-standard": "40.0.0",
+		"tsdown": "0.22.14",
+		"typedoc": "0.28.20",
+		"typescript": "6.0.3",
+		"vite": "8.2.0",
+		"vitest": "4.1.10"
+	},
+	"peerDependencies": {
+		"react": ">=18.0.0"
+	},
+	"peerDependenciesMeta": {
+		"react": {
+			"optional": true
+		}
+	},
+	"packageManager": "pnpm@11.16.0",
+	"create-template-project": {
+		"template": "web-widget"
+	}
+}

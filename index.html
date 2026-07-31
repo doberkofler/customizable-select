@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Customizable Select</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+	</head>
+	<body>
+		<main class="demo-shell">
+			<section class="demo-hero" aria-labelledby="demo-title">
+				<p class="demo-eyebrow">Dependency-free TypeScript UI component</p>
+				<h1 id="demo-title">A modern select that starts with the platform.</h1>
+				<p class="demo-copy">Dependency-free, strongly typed, form-compatible selection for local data. Built as a modern migration path from Select2.</p>
+
+				<div class="demo-card">
+					<div class="demo-field">
+						<label class="demo-label" for="customizable-select-source">Technologies</label>
+						<select id="customizable-select-source" name="technologies" multiple></select>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo-panel" aria-label="Demo controls and events">
+				<div class="demo-controls">
+					<button id="reset-btn" class="demo-btn" type="button">Reset</button>
+					<button id="disable-btn" class="demo-btn" type="button" aria-pressed="false">Disable</button>
+					<button id="theme-btn" class="demo-btn" type="button" aria-pressed="false">Dark Theme</button>
+				</div>
+				<label class="demo-log-label" for="event-log">Event Log</label>
+				<textarea id="event-log" class="demo-event-log" readonly></textarea>
+			</section>
+		</main>
+
+		<script type="module" src="src/demo/app.ts"></script>
+	</body>
+</html>
