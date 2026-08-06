@@ -44,7 +44,6 @@ function mountSelect(): CustomizableSelect<Framework> {
 function init(): void {
 	let instance = mountSelect();
 	let disabled = false;
-	let darkTheme = false;
 	appendEventLog('demo initialized');
 
 	document.querySelector<HTMLButtonElement>('#reset-btn')?.addEventListener('click', () => {
@@ -63,15 +62,12 @@ function init(): void {
 		appendEventLog(`disabled=${String(disabled)}`);
 	});
 
-	const themeButton = document.querySelector<HTMLButtonElement>('#theme-btn');
-	themeButton?.addEventListener('click', () => {
-		darkTheme = !darkTheme;
-		const theme: ThemeMode = darkTheme ? 'dark' : 'light';
-		document.documentElement.dataset['theme'] = theme;
-		instance.setTheme(theme);
-		themeButton.textContent = darkTheme ? 'Light Theme' : 'Dark Theme';
-		themeButton.setAttribute('aria-pressed', String(darkTheme));
-		appendEventLog(`theme=${theme}`);
+	const themeSelect = document.querySelector<HTMLSelectElement>('#theme-select');
+	themeSelect?.addEventListener('change', () => {
+		const requested = themeSelect.value as ThemeMode;
+		document.documentElement.dataset['theme'] = requested;
+		instance.setTheme(requested);
+		appendEventLog(`theme=${requested}`);
 	});
 }
 

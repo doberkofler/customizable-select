@@ -45,7 +45,7 @@ test.describe('CustomizableSelect demo', () => {
 		await expect(page.locator('.customizable-select__selection')).toHaveAttribute('aria-disabled', 'true');
 		await expect(page.locator('#event-log')).toHaveValue(/disabled=true/u);
 
-		await page.locator('#theme-btn').click();
+		await page.locator('#theme-select').selectOption('dark');
 		await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 	});
 

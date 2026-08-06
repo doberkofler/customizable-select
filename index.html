@@ -26,7 +26,11 @@
 				<div class="demo-controls">
 					<button id="reset-btn" class="demo-btn" type="button">Reset</button>
 					<button id="disable-btn" class="demo-btn" type="button" aria-pressed="false">Disable</button>
-					<button id="theme-btn" class="demo-btn" type="button" aria-pressed="false">Dark Theme</button>
+					<select id="theme-select" class="demo-btn">
+						<option value="system" selected>System</option>
+						<option value="light">Light</option>
+						<option value="dark">Dark</option>
+					</select>
 				</div>
 				<label class="demo-log-label" for="event-log">Event Log</label>
 				<textarea id="event-log" class="demo-event-log" readonly></textarea>
