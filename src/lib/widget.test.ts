@@ -7,6 +7,7 @@ import {
 	getCustomizableSelect,
 	type CustomizableSelectOption,
 	type CustomizableSelectOptions,
+	type ThemeMode,
 } from './widget.ts';
 
 type Metadata = {readonly color: string};
@@ -278,5 +279,28 @@ describe('CustomizableSelect', () => {
 		expect(getCustomizableSelect(source)).toBe(second);
 		destroyCustomizableSelect(source);
 		expect(getCustomizableSelect(source)).toBeUndefined();
+	});
+
+	it('defaults data-theme to system on the root element', () => {
+		const source = createSelect();
+		const instance = mount(source);
+		expect(instance.element.dataset['theme']).toBe('system');
+	});
+
+	it('sets data-theme on the root element from the theme option', () => {
+		for (const theme of ['light', 'dark', 'system'] as ThemeMode[]) {
+			const source = createSelect();
+			const instance = mount(source, {theme});
+			expect(instance.element.dataset['theme']).toBe(theme);
+		}
+	});
+
+	it('updates data-theme through setTheme()', () => {
+		const source = createSelect();
+		const instance = mount(source);
+		instance.setTheme('dark');
+		expect(instance.element.dataset['theme']).toBe('dark');
+		instance.setTheme('light');
+		expect(instance.element.dataset['theme']).toBe('light');
 	});
 });

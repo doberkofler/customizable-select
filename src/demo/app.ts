@@ -1,4 +1,4 @@
-import {CustomizableSelect, type CustomizableSelectOption} from '../lib/index.ts';
+import {CustomizableSelect, type CustomizableSelectOption, type ThemeMode} from '../lib/index.ts';
 import '../styles/index.css';
 import './demo-shell.css';
 
@@ -66,10 +66,12 @@ function init(): void {
 	const themeButton = document.querySelector<HTMLButtonElement>('#theme-btn');
 	themeButton?.addEventListener('click', () => {
 		darkTheme = !darkTheme;
-		document.documentElement.dataset['theme'] = darkTheme ? 'dark' : 'light';
+		const theme: ThemeMode = darkTheme ? 'dark' : 'light';
+		document.documentElement.dataset['theme'] = theme;
+		instance.setTheme(theme);
 		themeButton.textContent = darkTheme ? 'Light Theme' : 'Dark Theme';
 		themeButton.setAttribute('aria-pressed', String(darkTheme));
-		appendEventLog(`theme=${darkTheme ? 'dark' : 'light'}`);
+		appendEventLog(`theme=${theme}`);
 	});
 }
 

@@ -13,6 +13,30 @@
 	--customizable-select-shadow: 0 16px 38px rgb(18, 38, 63, 0.18);
 }
 
+[data-theme="dark"] {
+	--customizable-select-background: #151f2d;
+	--customizable-select-background-active: #1f334b;
+	--customizable-select-border: #40516a;
+	--customizable-select-text: #edf4ff;
+	--customizable-select-text-muted: #98a8bd;
+	--customizable-select-tag-background: #254767;
+	--customizable-select-shadow: 0 16px 38px rgb(0, 0, 0, 0.42);
+	--customizable-select-danger: #e05555;
+}
+
+@media (prefers-color-scheme: dark) {
+	[data-theme="system"] {
+		--customizable-select-background: #151f2d;
+		--customizable-select-background-active: #1f334b;
+		--customizable-select-border: #40516a;
+		--customizable-select-text: #edf4ff;
+		--customizable-select-text-muted: #98a8bd;
+		--customizable-select-tag-background: #254767;
+		--customizable-select-shadow: 0 16px 38px rgb(0, 0, 0, 0.42);
+		--customizable-select-danger: #e05555;
+	}
+}
+
 .customizable-select__source {
 	position: absolute !important;
 	width: 1px !important;

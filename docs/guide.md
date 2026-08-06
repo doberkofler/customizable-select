@@ -19,6 +19,7 @@ The library does not expose jQuery, global state, HTML-string templates, or a Se
 | `allowUnknownValue` | `false` | Retains values that do not have a matching option. They have no visual selection. |
 | `disabled` | Source state | Prevents focus and interaction. |
 | `readOnly` | Input source state | Preserves focusability while preventing changes. |
+| `theme` | `system` | Controls the color scheme: `light`, `dark`, or `system` (follows OS `prefers-color-scheme`). Sets a `data-theme` attribute on the generated root element. |
 | `messages` | English defaults | Overrides search, clear, remove, and no-results text. |
 | `filterOption` | Diacritic-insensitive substring | Replaces local matching. |
 | `renderOption` | Option text | Returns a string or DOM `Node` for a result. |
@@ -79,6 +80,24 @@ destroyCustomizableSelect('#framework');
 ```
 
 Creating another factory instance for the same source destroys the previous one. `destroy()` is idempotent, removes listeners and generated DOM, and restores the source presentation and original select options. Calling another instance method after destruction throws to expose lifecycle misuse.
+
+## Theme
+
+The `theme` option controls the component color scheme. It sets a `data-theme` attribute on the generated root element and accepts `'light'`, `'dark'`, or `'system'` (default). Use `setTheme()` to change it after construction.
+
+| `theme` value | `data-theme` attribute | Visual result |
+|---|---|---|
+| `'system'` (default) | `system` | Respects OS `prefers-color-scheme` |
+| `'light'` | `light` | Always light (default design tokens) |
+| `'dark'` | `dark` | Always dark (`[data-theme="dark"]` overrides) |
+
+Because CSS uses bare `[data-theme]` selectors, consumers can also set the attribute on any ancestor element (e.g. `<html>`) to apply the theme without passing the option:
+
+```ts
+document.documentElement.dataset['theme'] = 'dark';
+```
+
+Dark-mode tokens override background, text, border, shadow, and tag colors. Accent and focus-ring colors are preserved across themes.
 
 ## Styling
 

@@ -1,3 +1,6 @@
+/** Controls the component color scheme. */
+export type ThemeMode = 'light' | 'dark' | 'system';
+
 /** A value accepted as an option identifier. Values are normalized to strings. */
 export type CustomizableSelectValue = string | number;
 
@@ -97,6 +100,8 @@ export type CustomizableSelectOptions<TData = unknown> = {
 	readonly readOnly?: boolean;
 	/** Additional class added to the generated root element. */
 	readonly className?: string;
+	/** Controls the component color scheme. Defaults to system. */
+	readonly theme?: ThemeMode;
 	/** Localized message overrides. */
 	readonly messages?: Partial<CustomizableSelectMessages>;
 	/** Parses an input element's value. The default uses comma-separated values in multiple mode. */
@@ -322,6 +327,7 @@ export class CustomizableSelect<TData = unknown> {
 		this.#dropdown.append(this.#searchInput, this.#results);
 		this.element.append(this.#selection, this.#dropdown);
 		this.source.insertAdjacentElement('afterend', this.element);
+		this.#applyTheme();
 		this.source.classList.add('customizable-select__source');
 		this.source.setAttribute('aria-hidden', 'true');
 		this.source.tabIndex = -1;
@@ -532,6 +538,15 @@ export class CustomizableSelect<TData = unknown> {
 			this.close();
 		}
 		this.#renderDisabledState();
+	}
+
+	/**
+	 * Updates the component color scheme.
+	 * @param theme Light, dark, or system (follows OS preference).
+	 */
+	public setTheme(theme: ThemeMode): void {
+		this.#assertActive();
+		this.element.dataset['theme'] = theme;
 	}
 
 	/** Removes generated UI and listeners and restores the source presentation. */
@@ -789,6 +804,10 @@ export class CustomizableSelect<TData = unknown> {
 
 	#serializeValues(values: readonly string[]): string {
 		return (this.#optionsConfig.serializeInputValue ?? defaultSerializeInputValue)(values, this.#multiple);
+	}
+
+	#applyTheme(): void {
+		this.element.dataset['theme'] = this.#optionsConfig.theme ?? 'system';
 	}
 
 	#render(): void {

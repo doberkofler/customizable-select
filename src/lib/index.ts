@@ -14,4 +14,5 @@ export {
 	type CustomizableSelectRenderSelectionContext,
 	type CustomizableSelectSetValueOptions,
 	type CustomizableSelectValue,
+	type ThemeMode,
 } from './widget.ts';
