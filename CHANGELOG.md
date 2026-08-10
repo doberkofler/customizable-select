@@ -1,3 +1,9 @@
+## [0.2.1](https://github.com/doberkofler/customizable-select/compare/v0.2.0...v0.2.1) (2026-08-10)
+
+### Features
+
+* minor improvement in demo ([fbb7cde](https://github.com/doberkofler/customizable-select/commit/fbb7cde2aaa42c2b73454bd6f61c50d34ac0ea9c))
+
 # [0.2.0](https://github.com/doberkofler/customizable-select/compare/v0.1.1...v0.2.0) (2026-08-06)
 
 ### Features
