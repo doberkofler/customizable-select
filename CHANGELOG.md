@@ -1,3 +1,9 @@
+# [0.3.0](https://github.com/doberkofler/customizable-select/compare/v0.2.1...v0.3.0) (2026-08-18)
+
+### Bug Fixes
+
+* support updated React compiler lint ([a9496e3](https://github.com/doberkofler/customizable-select/commit/a9496e3cb55cfeb3709a580c616f897f49d08d79))
+
 ## [0.2.1](https://github.com/doberkofler/customizable-select/compare/v0.2.0...v0.2.1) (2026-08-10)
 
 ### Features
