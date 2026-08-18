@@ -43,19 +43,22 @@ function CustomizableSelectComponent<TData>(props: CustomizableSelectReactProps<
 	const instanceRef = useRef<NativeCustomizableSelect<TData> | null>(null);
 	const onValueChangeRef = useRef(onValueChange);
 	const valueRef = useRef(value);
+	const initializationRef = useRef({configuration, defaultValue, options, value});
 
 	useEffect(() => {
 		onValueChangeRef.current = onValueChange;
 		valueRef.current = value;
-	}, [onValueChange, value]);
+		initializationRef.current = {configuration, defaultValue, options, value};
+	});
 
 	useEffect(() => {
 		const source = inputRef.current ?? selectRef.current;
 		if (source === null) {
 			return;
 		}
-		const instance = new NativeCustomizableSelect<TData>(source, {...configuration, options});
-		const initialValue = value === undefined ? defaultValue : value;
+		const initialization = initializationRef.current;
+		const instance = new NativeCustomizableSelect<TData>(source, {...initialization.configuration, options: initialization.options});
+		const initialValue = initialization.value === undefined ? initialization.defaultValue : initialization.value;
 		if (initialValue !== undefined) {
 			instance.setValue(initialValue);
 			if (source instanceof HTMLSelectElement) {
@@ -74,17 +77,20 @@ function CustomizableSelectComponent<TData>(props: CustomizableSelectReactProps<
 		};
 		instance.addEventListener('customizable-select:change', handleChange);
 		instanceRef.current = instance;
-		setForwardedRef(ref, instance);
 
 		return (): void => {
 			instance.removeEventListener('customizable-select:change', handleChange);
 			instanceRef.current = null;
-			setForwardedRef(ref, null);
 			instance.destroy();
 		};
-		// Configuration not backed by setters is intentionally mount-only.
-		// oxlint-disable-next-line react-hooks/exhaustive-deps
 	}, [sourceElement]);
+
+	useEffect(() => {
+		setForwardedRef(ref, instanceRef.current);
+		return (): void => {
+			setForwardedRef(ref, null);
+		};
+	}, [ref, sourceElement]);
 
 	useEffect(() => {
 		const instance = instanceRef.current;

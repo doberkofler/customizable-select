@@ -101,4 +101,29 @@ describe('CustomizableSelect React adapter', () => {
 		});
 		expect(ref.current).toBeNull();
 	});
+
+	it('updates the forwarded ref without recreating the native instance', () => {
+		const firstRef = createRef<NativeCustomizableSelect | null>();
+		const secondRef = createRef<NativeCustomizableSelect | null>();
+		renderComponent({ref: firstRef} as Partial<CustomizableSelectReactProps>);
+		const instance = firstRef.current;
+
+		renderComponent({ref: secondRef} as Partial<CustomizableSelectReactProps>);
+
+		expect(firstRef.current).toBeNull();
+		expect(secondRef.current).toBe(instance);
+	});
+
+	it('uses current initialization props when replacing the source element', () => {
+		const ref = createRef<NativeCustomizableSelect | null>();
+		renderComponent({ref, searchable: true} as Partial<CustomizableSelectReactProps>);
+		const selectInstance = ref.current;
+
+		renderComponent({ref, searchable: false, sourceElement: 'input'} as Partial<CustomizableSelectReactProps>);
+
+		expect(document.querySelector('select')).toBeNull();
+		expect(document.querySelector('input.customizable-select__source')).not.toBeNull();
+		expect(document.querySelector<HTMLInputElement>('.customizable-select__search')?.hidden).toBe(true);
+		expect(ref.current).not.toBe(selectInstance);
+	});
 });
