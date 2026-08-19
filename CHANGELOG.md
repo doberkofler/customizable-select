@@ -1,3 +1,5 @@
+## [0.4.1](https://github.com/doberkofler/customizable-select/compare/v0.4.0...v0.4.1) (2026-08-19)
+
 # [0.4.0](https://github.com/doberkofler/customizable-select/compare/v0.3.0...v0.4.0) (2026-08-19)
 
 ### Bug Fixes
