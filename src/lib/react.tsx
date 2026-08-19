@@ -43,16 +43,18 @@ function CustomizableSelectComponent<TData>(props: CustomizableSelectReactProps<
 	const instanceRef = useRef<NativeCustomizableSelect<TData> | null>(null);
 	const onValueChangeRef = useRef(onValueChange);
 	const valueRef = useRef(value);
+	const refRef = useRef(ref);
 	const initializationRef = useRef({configuration, defaultValue, options, value});
 
 	useEffect(() => {
 		onValueChangeRef.current = onValueChange;
 		valueRef.current = value;
+		refRef.current = ref;
 		initializationRef.current = {configuration, defaultValue, options, value};
 	});
 
 	useEffect(() => {
-		const source = inputRef.current ?? selectRef.current;
+		const source = sourceElement === 'input' ? inputRef.current : selectRef.current;
 		if (source === null) {
 			return;
 		}
@@ -77,10 +79,12 @@ function CustomizableSelectComponent<TData>(props: CustomizableSelectReactProps<
 		};
 		instance.addEventListener('customizable-select:change', handleChange);
 		instanceRef.current = instance;
+		setForwardedRef(refRef.current, instance);
 
 		return (): void => {
 			instance.removeEventListener('customizable-select:change', handleChange);
 			instanceRef.current = null;
+			setForwardedRef(refRef.current, null);
 			instance.destroy();
 		};
 	}, [sourceElement]);
@@ -90,7 +94,7 @@ function CustomizableSelectComponent<TData>(props: CustomizableSelectReactProps<
 		return (): void => {
 			setForwardedRef(ref, null);
 		};
-	}, [ref, sourceElement]);
+	}, [ref]);
 
 	useEffect(() => {
 		const instance = instanceRef.current;
