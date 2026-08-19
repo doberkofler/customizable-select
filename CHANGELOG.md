@@ -1,3 +1,9 @@
+# [0.4.0](https://github.com/doberkofler/customizable-select/compare/v0.3.0...v0.4.0) (2026-08-19)
+
+### Bug Fixes
+
+* recreate React adapter when source element changes ([8da3478](https://github.com/doberkofler/customizable-select/commit/8da3478c9e061b4ddb49777c7eeb7af6e776f379))
+
 # [0.3.0](https://github.com/doberkofler/customizable-select/compare/v0.2.1...v0.3.0) (2026-08-18)
 
 ### Bug Fixes
