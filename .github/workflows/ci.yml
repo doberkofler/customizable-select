@@ -45,7 +45,7 @@ jobs:
         run: pnpm run build
 
       - name: Unit test (with coverage)
-        run: pnpm run test:coverage
+        run: pnpm run test
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
