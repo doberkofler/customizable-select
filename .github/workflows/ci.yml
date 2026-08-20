@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
 
     steps:
       - name: Checkout
@@ -38,5 +38,34 @@ jobs:
       - name: Install Playwright Browsers & Deps
         run: npx playwright install --with-deps chromium
 
-      - name: Validate
-        run: pnpm run ci
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Unit test (with coverage)
+        run: pnpm run test:coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: coverage/lcov.info
+          format: lcov
+          flag-name: node-${{ matrix.node-version }}
+          parallel: true
+
+      - name: Integration test
+        run: pnpm run integration-test
+
+  finish:
+    needs: build
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
+          carryforward: "node-22.x,node-24.x,node-26.x"
