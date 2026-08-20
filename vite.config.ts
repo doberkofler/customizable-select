@@ -21,15 +21,15 @@ export default defineConfig({
 		browser: {
 			enabled: true,
 			headless: true,
+			provider: playwright({
+				launchOptions: {
+					args: ['--disable-web-security'],
+				},
+			}),
 			screenshotDirectory: path.resolve('./temp/vitest/__screenshots__'),
 			instances: [
 				{
 					browser: 'chromium',
-					provider: playwright({
-						launchOptions: {
-							args: ['--disable-web-security'],
-						},
-					}),
 				},
 			],
 		},
