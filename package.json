@@ -1,6 +1,6 @@
 {
 	"name": "customizable-select",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": false,
 	"description": "An accessible, dependency-free TypeScript replacement for enhanced select controls",
 	"keywords": [
