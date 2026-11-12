@@ -237,7 +237,9 @@ export class CustomizableSelect<TData = unknown> {
 	#options: NormalizedOption<TData>[];
 	#values: string[] = [];
 	#multiple: boolean;
-	#disabled: boolean;
+	get #disabled(): boolean {
+		return this.source.matches(':disabled');
+	}
 	#readOnly: boolean;
 	#open = false;
 	#destroyed = false;
@@ -259,7 +261,6 @@ export class CustomizableSelect<TData = unknown> {
 		this.#optionsConfig = options;
 		this.#messages = {...DEFAULT_MESSAGES, ...options.messages};
 		this.#multiple = options.multiple ?? (source instanceof HTMLSelectElement && source.multiple);
-		this.#disabled = options.disabled ?? source.disabled;
 		this.#readOnly = options.readOnly ?? (source instanceof HTMLInputElement && source.readOnly);
 		this.#snapshot = this.#createSnapshot();
 		if (options.disabled !== undefined) {
@@ -516,7 +517,6 @@ export class CustomizableSelect<TData = unknown> {
 	 */
 	public setDisabled(disabled: boolean): void {
 		this.#assertActive();
-		this.#disabled = disabled;
 		this.source.disabled = disabled;
 		if (disabled) {
 			this.close();
@@ -969,7 +969,6 @@ export class CustomizableSelect<TData = unknown> {
 		if (this.#destroyed) {
 			return;
 		}
-		this.#disabled = this.source.disabled;
 		this.#readOnly = this.source instanceof HTMLInputElement && this.source.readOnly;
 		if (this.source instanceof HTMLSelectElement && this.source.multiple !== this.#multiple) {
 			this.#multiple = this.source.multiple;

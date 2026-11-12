@@ -303,4 +303,32 @@ describe('CustomizableSelect', () => {
 		instance.setTheme('light');
 		expect(instance.element.dataset['theme']).toBe('light');
 	});
+
+	it('ignores a dropdown option after the source fieldset is disabled', () => {
+		const source = createSelect();
+		const fieldset = document.createElement('fieldset');
+		fieldset.append(source);
+		document.body.append(fieldset);
+		const select = mount(source, {options: SINGLE_OPTIONS});
+		let changes = 0;
+		source.addEventListener('change', () => {
+			changes++;
+		});
+
+		select.open();
+		const option = [...select.element.querySelectorAll<HTMLElement>('.customizable-select__option')].find((row) => row.textContent === 'Béta');
+		if (option === undefined) {
+			throw new Error('Missing Béta option');
+		}
+
+		fieldset.disabled = true;
+		option.click();
+		expect(source.value).toBe('1');
+		expect(changes).toBe(0);
+
+		fieldset.disabled = false;
+		option.click();
+		expect(source.value).toBe('beta');
+		expect(changes).toBe(1);
+	});
 });
